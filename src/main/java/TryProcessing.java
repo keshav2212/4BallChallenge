@@ -1,9 +1,10 @@
 import processing.core.PApplet;
 
 public class TryProcessing extends PApplet{
-    int x = 0;
+    int x = 0, y = 0;
     public static final int DIAMETER = 10;
     public static final int HEIGHT = 480;
+    public static final int WIDTH = 640;
     public static void main(String args[]){
         PApplet.main("TryProcessing",args);
         //PApplet.main("Try Processing",args);
@@ -12,7 +13,7 @@ public class TryProcessing extends PApplet{
     @Override
     public void settings() {
         super.settings();
-        size(640, HEIGHT);
+        size(WIDTH, HEIGHT);
     }
 
     @Override
@@ -22,16 +23,20 @@ public class TryProcessing extends PApplet{
 
     @Override
     public void draw() {
+        draw_N_cricles(4);
 //        background(456);
-        float first = (float) (HEIGHT/5.0);
-        float second = first*2;
-        float third = first*3;
-        float fourth = first*4;
-        ellipse(x, first, DIAMETER, DIAMETER);
-        ellipse(x*2, second, DIAMETER, DIAMETER);
-        ellipse(x*3, third, DIAMETER, DIAMETER);
-        ellipse(x*4, fourth, DIAMETER, DIAMETER);
+//        System.out.println("Run from draw method.");
+    }
+    public void draw_N_cricles(int n){
+        float first = (float) (HEIGHT/(n+1))+y;
+        for(int i = 1; i <= n; i++){
+            ellipse(x*i, first*i, DIAMETER, DIAMETER);
+        }
         x++;
-        //System.out.println("Run from draw method.");
+        x = x%640;
+        //System.out.println(x);
+       // if(x==0)
+         //   y+=5;
+
     }
 }
